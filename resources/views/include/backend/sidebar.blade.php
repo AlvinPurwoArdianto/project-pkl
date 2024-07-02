@@ -30,7 +30,7 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="{{ route('kartu.index') }}" class="menu-link">
-                        <div data-i18n="Without menu">Kartu</div>
+                        <div data-i18n="Without menu">Dompet</div>
                     </a>
                 </li>
             </ul>

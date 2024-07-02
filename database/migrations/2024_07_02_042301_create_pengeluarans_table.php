@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,11 +12,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kartus', function (Blueprint $table) {
+        Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kartu');
-            $table->bigInteger('no_kartu');
-            $table->integer('total')->nullable()->default(0);
+            $table->integer('jumlah_pengeluaran');
+            $table->text('deskripsi');
+            $table->unsignedBigInteger('id_kartu');
+
+            $table->foreign('id_kartu')->references('id')->on('kartus')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kartus');
+        Schema::dropIfExists('pengeluarans');
     }
 };

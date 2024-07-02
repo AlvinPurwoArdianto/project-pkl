@@ -13,7 +13,8 @@
                             <th>No</th>
                             <th>Jumlah pemasukan</th>
                             <th>Deskripsi</th>
-                            <th>Nama Kartu</th>
+                            <th>Nama Dompet</th>
+                            <th>Tanggal</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -24,6 +25,7 @@
                                 <td> <strong> Rp. {{ $data->jumlah_pemasukan }} </strong></td>
                                 <td> <strong> {{ $data->deskripsi }} </strong></td>
                                 <td> <strong> {{ $data->kartu->nama_kartu }} </strong></td>
+                                <td> <strong> {{ $data->created_at->format('d-m-Y') }} </strong></td>
                                 <td>
                                     <form action="{{ route('pemasukan.destroy', $data->id) }}" method="POST">
                                         @csrf
@@ -36,8 +38,9 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ route('pemasukan.edit', $data->id) }}"><i
                                                         class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a href="{{ route('pemasukan.destroy', $data->id) }}" class="dropdown-item" data-confirm-delete="true"><i
-                                                        class="bx bx-trash-alt me-1"></i> Delete</a>
+                                                <a href="{{ route('pemasukan.destroy', $data->id) }}" class="dropdown-item"
+                                                    data-confirm-delete="true"><i class="bx bx-trash-alt me-1"></i>
+                                                    Delete</a>
                                             </div>
                                         </div>
                                     </form>

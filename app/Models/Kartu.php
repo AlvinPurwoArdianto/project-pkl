@@ -12,4 +12,13 @@ class Kartu extends Model
     protected $fillable = ['id', 'nama_kartu', 'no_kartu', 'total'];
     public $timestamp = true;
 
+    public function pemasukan()
+    {
+        return $this->hasMany(Pemasukan::class);
+    }
+
+    public function pengeluaran()
+    {
+        return $this->hasMany(Pemasukan::class);
+    }
 }

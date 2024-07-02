@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Kartu;
 use App\Models\Pemasukan;
 use Illuminate\Http\Request;
-use NumberFormatter;
 
 class PemasukanController extends Controller
 {
@@ -16,7 +15,7 @@ class PemasukanController extends Controller
      */
     public function index()
     {
-        $pemasukan = Pemasukan::all();
+        $pemasukan = Pemasukan::latest()->get();
         $kartu = Kartu::all();
         return view('pemasukan.index', compact('pemasukan', 'kartu'));
     }
@@ -58,7 +57,6 @@ class PemasukanController extends Controller
 
         $pemasukan->save();
         return redirect()->route('pemasukan.index');
-
     }
 
     /**
@@ -81,7 +79,9 @@ class PemasukanController extends Controller
      */
     public function edit($id)
     {
-
+        $kartu = Kartu::all();
+        $pemasukan = Pemasukan::findOrFail($id);
+        return view('pemasukan.edit', compact('pemasukan', 'kartu'));
     }
 
     /**
@@ -93,7 +93,30 @@ class PemasukanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'jumlah_pemasukan' => 'required',
+            'deskripsi' => 'required',
+            'id_kartu' => 'required',
+        ]);
+
+        $pemasukan = Pemasukan::findOrFail($id);
+        $pemasukan->jumlah_pemasukan = $request->jumlah_pemasukan;
+        $pemasukan->deskripsi = $request->deskripsi;
+        $pemasukan->id_kartu = $request->id_kartu;
+
+
+        // $kartu = Kartu::find($request->id_kartu);
+        // $kartu->total += $request->jumlah_pemasukan;
+        // $kartu->save();
+
+
+        // $kartu = Kartu::where('id', $request->id_kartu)->first();
+        // $kartu = Kartu::find($request->id_kartu);
+        // $kartu->total = $kartu->total - $pemasukan->jumlah_pemasukan + $request->jumlah_pemasukan;
+        // $kartu->save();
+
+        $pemasukan->save();
+        return redirect()->route('pemasukan.index');
     }
 
     /**
@@ -104,6 +127,9 @@ class PemasukanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pemasukan = Pemasukan::findOrFail($id);
+        $pemasukan->delete();
+
+        return redirect()->route('pemasukan.index');
     }
 }

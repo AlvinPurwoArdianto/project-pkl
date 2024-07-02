@@ -4,17 +4,19 @@
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> pemasukan</h4>
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Tambah pemasukan</h5>
+                <h5 class="mb-0">Edit pemasukan</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('pemasukan.store') }}" method="POST">
+                <form action="{{ route('pemasukan.update', $pemasukan->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Jumlah pemasukan</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="number" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Jumlah pemasukan" name="jumlah_pemasukan" />
+                                    placeholder="Jumlah pemasukan" name="jumlah_pemasukan"
+                                    value="{{ $pemasukan->jumlah_pemasukan }}" />
                             </div>
                         </div>
                     </div>
@@ -23,7 +25,7 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Deskripsi" name="deskripsi" />
+                                    placeholder="Deskripsi" name="deskripsi" value="{{ $pemasukan->deskripsi }}" />
                             </div>
                         </div>
                     </div>
@@ -33,7 +35,9 @@
                             <div class="input-group input-group-merge">
                                 <select class="form-control" name="id_kartu">
                                     @foreach ($kartu as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama_kartu }}</option>
+                                        <option value="{{ $data->id }}"
+                                            {{ $data->id == $pemasukan->id_kartu ? 'selected' : '' }}>
+                                            {{ $data->nama_kartu }}</option>
                                     @endforeach
                                 </select>
                             </div>

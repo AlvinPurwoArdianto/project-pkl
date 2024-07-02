@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Kartu;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -43,8 +42,15 @@ class KartuController extends Controller
         $request->validate([
             'nama_kartu' => 'required',
             'no_kartu' => 'required|unique:kartus',
-            'total' => 'required',
+            'total' => 'nullable|integer',
         ]);
+
+        // if (!$request->filled('total')) {
+        //     $input['total'] = 0; // Atur nilai default jika tidak diisi
+        // }
+
+        // Kartu::create($input);
+
 
         $kartu = new Kartu();
         $kartu->nama_kartu = $request->nama_kartu;
@@ -91,7 +97,7 @@ class KartuController extends Controller
         $request->validate([
             'nama_kartu' => 'required',
             'no_kartu' => 'required',
-            'total' => 'required',
+            'total' => 'nullable|integer',
         ]);
 
         $kartu = Kartu::findOrFail($id);
