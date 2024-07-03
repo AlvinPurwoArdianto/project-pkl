@@ -42,7 +42,15 @@
                     </a>
                 </li>
             </ul>
-        </li>
 
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('pengeluaran.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">Pengeluaran</div>
+                    </a>
+                </li>
+            </ul>
+
+        </li>
     </ul>
 </aside>

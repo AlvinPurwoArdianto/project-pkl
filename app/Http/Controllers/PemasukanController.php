@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kartu;
 use App\Models\Pemasukan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PemasukanController extends Controller
 {
@@ -17,7 +18,9 @@ class PemasukanController extends Controller
     {
         $pemasukan = Pemasukan::latest()->get();
         $kartu = Kartu::all();
-        return view('pemasukan.index', compact('pemasukan', 'kartu'));
+        confirmDelete('Hapus Pemasukan!', 'Apakah Anda Yakin?');
+
+        return view('user.pemasukan.index', compact('pemasukan', 'kartu'));
     }
 
     /**
@@ -29,7 +32,7 @@ class PemasukanController extends Controller
     {
         $kartu = Kartu::all();
         $pemasukan = Pemasukan::all();
-        return view('pemasukan.create', compact('pemasukan', 'kartu'));
+        return view('user.pemasukan.create', compact('pemasukan', 'kartu'));
     }
 
     /**
@@ -56,6 +59,8 @@ class PemasukanController extends Controller
         $kartu->save();
 
         $pemasukan->save();
+        Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
+
         return redirect()->route('pemasukan.index');
     }
 
@@ -67,8 +72,6 @@ class PemasukanController extends Controller
      */
     public function show($id)
     {
-        $pemasukan = Pemasukan::find($id);
-        return view('pemasukan.show', compact('pemasukan'));
     }
 
     /**
@@ -81,7 +84,7 @@ class PemasukanController extends Controller
     {
         $kartu = Kartu::all();
         $pemasukan = Pemasukan::findOrFail($id);
-        return view('pemasukan.edit', compact('pemasukan', 'kartu'));
+        return view('user.pemasukan.edit', compact('pemasukan', 'kartu'));
     }
 
     /**
@@ -100,23 +103,27 @@ class PemasukanController extends Controller
         ]);
 
         $pemasukan = Pemasukan::findOrFail($id);
-        $pemasukan->jumlah_pemasukan = $request->jumlah_pemasukan;
-        $pemasukan->deskripsi = $request->deskripsi;
-        $pemasukan->id_kartu = $request->id_kartu;
+        $kartu = $pemasukan->kartu;
+        $kartu->total = $kartu->total - $pemasukan->jumlah_pemasukan + $request->jumlah_pemasukan;
+        $kartu->save();
 
+        $pemasukan->update($request->all());
+        Alert::success('Success', 'Pemasukan Berhasil Diedit.')->autoClose(1500);
+        return redirect()->route('pemasukan.index');
+
+        // $pemasukan->deskripsi = $request->deskripsi;
+        // $pemasukan->id_kartu = $request->id_kartu;
 
         // $kartu = Kartu::find($request->id_kartu);
         // $kartu->total += $request->jumlah_pemasukan;
         // $kartu->save();
-
-
         // $kartu = Kartu::where('id', $request->id_kartu)->first();
+
         // $kartu = Kartu::find($request->id_kartu);
         // $kartu->total = $kartu->total - $pemasukan->jumlah_pemasukan + $request->jumlah_pemasukan;
         // $kartu->save();
 
-        $pemasukan->save();
-        return redirect()->route('pemasukan.index');
+        // $pemasukan->save();
     }
 
     /**
@@ -125,11 +132,15 @@ class PemasukanController extends Controller
      * @param  \App\Models\Pemasukan  $pemasukan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $pemasukan = Pemasukan::findOrFail($id);
-        $pemasukan->delete();
+        $kartu = $pemasukan->kartu;
+        $kartu->total -= $pemasukan->jumlah_pemasukan;
+        $kartu->save();
 
+        $pemasukan->delete();
+        Alert::success('Terhapus!', 'Data Berhasil Dihapus')->autoClose(1500);
         return redirect()->route('pemasukan.index');
     }
 }

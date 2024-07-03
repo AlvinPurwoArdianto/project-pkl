@@ -46,6 +46,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('backend/assets/js/config.js') }}"></script>
     @yield('css')
+    @yield('styles')
 </head>
 
 <body>
@@ -106,6 +107,7 @@
     @yield('js')
     @yield('script')
 
+    @stack('scripts')
     @include('sweetalert::alert')
 </body>
 
