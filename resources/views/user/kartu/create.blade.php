@@ -8,7 +8,7 @@
                 <h5 class="mb-0">Tambah Dompet</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('kartu.store') }}" method="POST">
+                <form action="{{ route('dompet.store') }}" method="POST">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama Dompet</label>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('kartu.index') }} " class="btn btn-primary">Back</a>
+                            <a href="{{ route('dompet.index') }} " class="btn btn-primary">Back</a>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ class KartuController extends Controller
     {
         $kartu = Kartu::all();
         confirmDelete('Hapus Kartu!', 'Apakah Anda Yakin?');
-        return view('kartu.index', compact('kartu'));
+        return view('user.kartu.index', compact('kartu'));
     }
 
     /**
@@ -28,7 +28,7 @@ class KartuController extends Controller
     public function create()
     {
         $kartu = Kartu::all();
-        return view('kartu.create', compact('kartu'));
+        return view('user.kartu.create', compact('kartu'));
     }
 
     /**
@@ -51,7 +51,6 @@ class KartuController extends Controller
 
         // Kartu::create($input);
 
-
         $kartu = new Kartu();
         $kartu->nama_kartu = $request->nama_kartu;
         $kartu->no_kartu = $request->no_kartu;
@@ -59,7 +58,7 @@ class KartuController extends Controller
         $kartu->save();
         Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
 
-        return redirect()->route('kartu.index');
+        return redirect()->route('dompet.index');
     }
 
     /**
@@ -82,7 +81,7 @@ class KartuController extends Controller
     public function edit($id)
     {
         $kartu = Kartu::findOrFail($id);
-        return view('kartu.edit', compact('kartu'));
+        return view('user.kartu.edit', compact('kartu'));
     }
 
     /**
@@ -106,7 +105,7 @@ class KartuController extends Controller
         $kartu->save();
         Alert::success('Success', 'Kartu Berhasil Diedit.')->autoClose(1500);
 
-        return redirect()->route('kartu.index');
+        return redirect()->route('dompet.index');
     }
 
     /**
@@ -120,6 +119,6 @@ class KartuController extends Controller
         $kartu = Kartu::findOrFail($id);
         $kartu->delete();
         Alert::success('Terhapus!', 'Data Berhasil Dihapus')->autoClose(1500);
-        return redirect()->route('kartu.index');
+        return redirect()->route('dompet.index');
     }
 }

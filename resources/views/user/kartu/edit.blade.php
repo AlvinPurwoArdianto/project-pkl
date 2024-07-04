@@ -7,7 +7,7 @@
                 <h5 class="mb-0">Edit Table kartu</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('kartu.update', $kartu->id) }}" method="POST">
+                <form action="{{ route('dompet.update', $kartu->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('kartu.index') }} " class="btn btn-primary">Back</a>
+                            <a href="{{ route('dompet.index') }} " class="btn btn-primary">Back</a>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>

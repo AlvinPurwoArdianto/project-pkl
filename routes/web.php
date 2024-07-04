@@ -20,13 +20,12 @@ Route::get('/', function () {
 
 // });
 
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
-    Route::resource('kartu', KartuController::class);
+    Route::resource('dompet', KartuController::class);
     Route::resource('pemasukan', PemasukanController::class);
     Route::resource('pengeluaran', PengeluaranController::class);
 });

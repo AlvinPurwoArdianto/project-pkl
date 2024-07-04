@@ -111,19 +111,11 @@ class PemasukanController extends Controller
         Alert::success('Success', 'Pemasukan Berhasil Diedit.')->autoClose(1500);
         return redirect()->route('pemasukan.index');
 
+        // $pemasukan->jumlah_pemasukan = $request->jumlah_pemasukan;
         // $pemasukan->deskripsi = $request->deskripsi;
         // $pemasukan->id_kartu = $request->id_kartu;
-
-        // $kartu = Kartu::find($request->id_kartu);
-        // $kartu->total += $request->jumlah_pemasukan;
-        // $kartu->save();
-        // $kartu = Kartu::where('id', $request->id_kartu)->first();
-
-        // $kartu = Kartu::find($request->id_kartu);
-        // $kartu->total = $kartu->total - $pemasukan->jumlah_pemasukan + $request->jumlah_pemasukan;
-        // $kartu->save();
-
         // $pemasukan->save();
+
     }
 
     /**
@@ -132,7 +124,7 @@ class PemasukanController extends Controller
      * @param  \App\Models\Pemasukan  $pemasukan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
         $pemasukan = Pemasukan::findOrFail($id);
         $kartu = $pemasukan->kartu;

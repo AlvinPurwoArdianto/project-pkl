@@ -104,23 +104,21 @@ class PengeluaranController extends Controller
         ]);
 
         $pengeluaran = Pengeluaran::findOrFail($id);
-        $pengeluaran->jumlah_pengeluaran = $request->jumlah_pengeluaran;
-        $pengeluaran->deskripsi = $request->deskripsi;
-        $pengeluaran->id_kartu = $request->id_kartu;
+        $kartu = $pengeluaran->kartu;
+        $kartu->total = $kartu->total + $pengeluaran->jumlah_pengeluaran - $request->jumlah_pengeluaran;
+        $kartu->save();
 
-        // $kartu = Kartu::find($request->id_kartu);
-        // $kartu->total += $request->jumlah_pengeluaran;
-        // $kartu->save();
-
-        // $kartu = Kartu::where('id', $request->id_kartu)->first();
-        // $kartu = Kartu::find($request->id_kartu);
-        // $kartu->total = $kartu->total - $pengeluaran->jumlah_pengeluaran + $request->jumlah_pengeluaran;
-        // $kartu->save();
-
-        $pengeluaran->save();
+        $pengeluaran->update($request->all());
         Alert::success('Success', 'Kartu Berhasil Diedit.')->autoClose(1500);
 
         return redirect()->route('pengeluaran.index');
+
+        // $pengeluaran = Pengeluaran::findOrFail($id);
+        // $pengeluaran->jumlah_pengeluaran = $request->jumlah_pengeluaran;
+        // $pengeluaran->deskripsi = $request->deskripsi;
+        // $pengeluaran->id_kartu = $request->id_kartu;
+        // $pengeluaran->save();
+
     }
 
     /**
@@ -133,8 +131,12 @@ class PengeluaranController extends Controller
     {
         $pengeluaran = Pengeluaran::findOrFail($id);
 
+        $kartu = $pengeluaran->kartu;
+        $kartu->total += $pengeluaran->jumlah_pengeluaran;
+        $kartu->save();
+
         $pengeluaran->delete();
-        
+
         Alert::success('Terhapus!', 'Data Berhasil Dihapus')->autoClose(1500);
 
         return redirect()->route('pengeluaran.index');

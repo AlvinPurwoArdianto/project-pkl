@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h5 class="card-header">Table Dompet <a href="{{ route('kartu.create') }}" class="btn btn-sm btn-primary"
+                <h5 class="card-header">Table Dompet <a href="{{ route('dompet.create') }}" class="btn btn-sm btn-primary"
                         style="float: right">Add</a></h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table table-striped" id="example">
@@ -30,7 +30,7 @@
                                     <td> <strong> {{ $data->no_kartu }} </strong></td>
                                     <td> <strong>Rp. {{ $data->total }} </strong></td>
                                     <td>
-                                        <form action="{{ route('kartu.destroy', $data->id) }}" method="POST">
+                                        <form action="{{ route('dompet.destroy', $data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="dropdown">
@@ -39,9 +39,9 @@
                                                     <i class="bx bx-dots-vertical-rounded"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ route('kartu.edit', $data->id) }}"><i
+                                                    <a class="dropdown-item" href="{{ route('dompet.edit', $data->id) }}"><i
                                                             class="bx bx-edit-alt me-1"></i> Edit </a>
-                                                    <a href="{{ route('kartu.destroy', $data->id) }}" class="dropdown-item"
+                                                    <a href="{{ route('dompet.destroy', $data->id) }}" class="dropdown-item"
                                                         data-confirm-delete="true"><i class="bx bx-trash-alt me-1"></i>
                                                         Delete</a>
                                                 </div>
