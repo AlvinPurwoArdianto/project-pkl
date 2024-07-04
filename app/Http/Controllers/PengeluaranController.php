@@ -55,13 +55,19 @@ class PengeluaranController extends Controller
         $pengeluaran->id_kartu = $request->id_kartu;
 
         $kartu = Kartu::find($request->id_kartu);
-        $kartu->total -= $request->jumlah_pengeluaran;
-        $kartu->save();
 
-        $pengeluaran->save();
-        Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
+        if ($kartu->total < $request->jumlah_pengeluaran) {
+            Alert::warning('Warning', 'Saldo anda tidak mencukupi')->autoClose(1500);
+            return redirect()->route('pengeluaran.create');
+        } else {
+            $kartu->total -= $request->jumlah_pengeluaran;
+            $kartu->save();
+            $pengeluaran->save();
+            Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
 
-        return redirect()->route('pengeluaran.index');
+            return redirect()->route('pengeluaran.index');
+        }
+
     }
 
     /**
