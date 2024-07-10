@@ -9,6 +9,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PemasukanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +35,7 @@ class PemasukanController extends Controller
     public function create()
     {
         $kartu = Kartu::all();
-        $pemasukan = Pemasukan::all();
+        $pemasukan = Pemasukan::latest()->get();
         return view('user.pemasukan.create', compact('pemasukan', 'kartu'));
     }
 
@@ -59,9 +63,9 @@ class PemasukanController extends Controller
         $kartu->save();
 
         $pemasukan->save();
-        Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
+        Alert::success('Success', 'Pemasukan Berhasil Ditambah.')->autoClose(1000);
 
-        return redirect()->route('pemasukan.index');
+        return redirect()->route('home');
     }
 
     /**
@@ -108,7 +112,7 @@ class PemasukanController extends Controller
         $kartu->save();
 
         $pemasukan->update($request->all());
-        Alert::success('Success', 'Pemasukan Berhasil Diedit.')->autoClose(1500);
+        Alert::success('Success', 'Pemasukan Berhasil Diedit.')->autoClose(1000);
         return redirect()->route('pemasukan.index');
 
         // $pemasukan->jumlah_pemasukan = $request->jumlah_pemasukan;
@@ -132,7 +136,7 @@ class PemasukanController extends Controller
         $kartu->save();
 
         $pemasukan->delete();
-        Alert::success('Terhapus!', 'Data Berhasil Dihapus')->autoClose(1500);
+        Alert::success('Terhapus!', 'Data Pemasukan Berhasil Dihapus')->autoClose(1000);
         return redirect()->route('pemasukan.index');
     }
 }

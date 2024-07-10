@@ -9,6 +9,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PengeluaranController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -55,18 +60,25 @@ class PengeluaranController extends Controller
         $pengeluaran->id_kartu = $request->id_kartu;
 
         $kartu = Kartu::find($request->id_kartu);
+        $kartu->total -= $request->jumlah_pengeluaran;
+        $kartu->save();
 
-        if ($kartu->total < $request->jumlah_pengeluaran) {
-            Alert::warning('Warning', 'Saldo anda tidak mencukupi')->autoClose(1500);
-            return redirect()->route('pengeluaran.create');
-        } else {
-            $kartu->total -= $request->jumlah_pengeluaran;
-            $kartu->save();
-            $pengeluaran->save();
-            Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
+        $pengeluaran->save();
+        Alert::success('Success', 'Pengeluaran Berhasil Dibuat.')->autoClose(1500);
 
-            return redirect()->route('pengeluaran.index');
-        }
+        return redirect()->route('home');
+
+        // if ($kartu->total < $request->jumlah_pengeluaran) {
+        //     Alert::warning('Warning', 'Saldo anda tidak mencukupi')->autoClose(1500);
+        //     return redirect()->route('pengeluaran.create');
+        // } else {
+        //     $kartu->total -= $request->jumlah_pengeluaran;
+        //     $kartu->save();
+        //     $pengeluaran->save();
+        //     Alert::success('Success', 'Pengeluaran Berhasil Ditambahkan.')->autoClose(1500);
+
+        //     return redirect()->route('pengeluaran.index');
+        // }
 
     }
 
@@ -115,7 +127,7 @@ class PengeluaranController extends Controller
         $kartu->save();
 
         $pengeluaran->update($request->all());
-        Alert::success('Success', 'Kartu Berhasil Diedit.')->autoClose(1500);
+        Alert::success('Success', 'Pengeluaran Berhasil Diedit.')->autoClose(1500);
 
         return redirect()->route('pengeluaran.index');
 
@@ -143,7 +155,7 @@ class PengeluaranController extends Controller
 
         $pengeluaran->delete();
 
-        Alert::success('Terhapus!', 'Data Berhasil Dihapus')->autoClose(1500);
+        Alert::success('Terhapus!', 'Data Pengeluaran Berhasil Dihapus')->autoClose(1500);
 
         return redirect()->route('pengeluaran.index');
     }

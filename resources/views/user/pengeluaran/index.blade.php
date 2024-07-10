@@ -82,7 +82,7 @@
         new DataTable('#example', {
             layout: {
                 topStart: {
-                    buttons: ['pdf', 'excel']
+                    buttons: ['pdf', 'excel', 'print']
                 }
             }
         });

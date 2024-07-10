@@ -30,7 +30,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('dompet.index') }} " class="btn btn-primary">Back</a>
+                            <a href="{{ route('home') }} " class="btn btn-primary">Back</a>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>

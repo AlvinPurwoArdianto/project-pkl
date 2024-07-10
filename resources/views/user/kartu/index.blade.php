@@ -8,7 +8,6 @@
         <!-- Basic Bootstrap Table -->
         <div class="card">
             <div class="card-body">
-
                 <h5 class="card-header">Table Dompet <a href="{{ route('dompet.create') }}" class="btn btn-sm btn-primary"
                         style="float: right">Add</a></h5>
                 <div class="table-responsive text-nowrap">

@@ -8,6 +8,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class KartuController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,7 @@ class KartuController extends Controller
      */
     public function index()
     {
-        $kartu = Kartu::all();
+        $kartu = Kartu::latest()->get();
         confirmDelete('Hapus Kartu!', 'Apakah Anda Yakin?');
         return view('user.kartu.index', compact('kartu'));
     }
@@ -58,7 +63,7 @@ class KartuController extends Controller
         $kartu->save();
         Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
 
-        return redirect()->route('dompet.index');
+        return redirect()->route('home');
     }
 
     /**
@@ -101,7 +106,7 @@ class KartuController extends Controller
 
         $kartu = Kartu::findOrFail($id);
         $kartu->nama_kartu = $request->nama_kartu;
-        $kartu->total = $request->total;
+        $kartu->no_kartu = $request->no_kartu;
         $kartu->save();
         Alert::success('Success', 'Kartu Berhasil Diedit.')->autoClose(1500);
 
@@ -118,7 +123,7 @@ class KartuController extends Controller
     {
         $kartu = Kartu::findOrFail($id);
         $kartu->delete();
-        Alert::success('Terhapus!', 'Data Berhasil Dihapus')->autoClose(1500);
-        return redirect()->route('dompet.index');
+        Alert::success('Terhapus!', 'Kartu Berhasil Dihapus')->autoClose(1500);
+        return redirect()->route('home');
     }
 }
