@@ -29,7 +29,7 @@
                             @foreach ($pemasukan as $data)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td> <strong> Rp. {{ $data->jumlah_pemasukan }} </strong></td>
+                                    <td> <strong> @currency($data->jumlah_pemasukan) </strong></td>
                                     <td> <strong> {{ $data->deskripsi }} </strong></td>
                                     <td> <strong> {{ $data->kartu->nama_kartu }} </strong></td>
                                     <td> <strong> {{ $data->created_at->format('d-m-Y') }} </strong></td>

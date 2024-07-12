@@ -63,7 +63,7 @@ class KartuController extends Controller
         $kartu->save();
         Alert::success('Success', 'Kartu Berhasil Dibuat.')->autoClose(1500);
 
-        return redirect()->route('home');
+        return redirect()->route('dompet.index');
     }
 
     /**
@@ -124,6 +124,6 @@ class KartuController extends Controller
         $kartu = Kartu::findOrFail($id);
         $kartu->delete();
         Alert::success('Terhapus!', 'Kartu Berhasil Dihapus')->autoClose(1500);
-        return redirect()->route('home');
+        return redirect()->route('dompet.index');
     }
 }

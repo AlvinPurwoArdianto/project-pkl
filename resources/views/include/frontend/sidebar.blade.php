@@ -7,7 +7,7 @@
             target="_blank">
             <img src="{{ asset('frontend/assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100"
                 alt="main_logo">
-            <span class="ms-1 font-weight-bold">Argon Dashboard 2</span>
+            <span class="ms-1 font-weight-bold">DompetKu</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li>
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder">Account pages</h6>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('profile') }}">

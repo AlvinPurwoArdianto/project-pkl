@@ -65,7 +65,7 @@ class PemasukanController extends Controller
         $pemasukan->save();
         Alert::success('Success', 'Pemasukan Berhasil Ditambah.')->autoClose(1000);
 
-        return redirect()->route('home');
+        return redirect()->route('pemasukan.index');
     }
 
     /**

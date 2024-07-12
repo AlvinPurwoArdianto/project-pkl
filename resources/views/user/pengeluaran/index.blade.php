@@ -30,7 +30,7 @@
                             @foreach ($pengeluaran as $data)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td> <strong> Rp. {{ $data->jumlah_pengeluaran }} </strong></td>
+                                    <td> <strong> @currency($data->jumlah_pengeluaran)</strong></td>
                                     <td> <strong> {{ $data->deskripsi }} </strong></td>
                                     <td> <strong> {{ $data->kartu->nama_kartu }} </strong></td>
                                     <td> <strong> {{ $data->created_at->format('d-m-Y') }} </strong></td>
@@ -82,7 +82,7 @@
         new DataTable('#example', {
             layout: {
                 topStart: {
-                    buttons: ['pdf', 'excel', 'print']
+                    buttons: ['pdf', 'excel']
                 }
             }
         });

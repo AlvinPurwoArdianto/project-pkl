@@ -49,7 +49,7 @@
                                                         </div>
                                                         <div>
                                                             <p class="text-white text-sm opacity-8 mb-0">Total Saldo</p>
-                                                            <h6 class="text-white mb-0">Rp {{ $data->total }} </h6>
+                                                            <h6 class="text-white mb-0"> @currency($data->total) </h6>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -62,7 +62,7 @@
                                 <div class="row mt-3">
                                     <div class="col-6 px-4">
                                         <h6>Total Semua Saldo Di Dompet :</h6>
-                                        <h5><b>Rp {{ $saldo }}</b></h5>
+                                        <h5><b> @currency($saldo) </b></h5>
                                     </div>
                                     <div class="col-3 text-center">
                                         <a class="btn bg-gradient-success"
@@ -76,11 +76,11 @@
                                 <div class="row mt-3">
                                     <div class="col-4 px-4 mt-2">
                                         <h5>Pemasukan</h5>
-                                        <h5><b>Rp {{ $allPemasukan }}</b></h5>
+                                        <h5><b>@currency($allPemasukan)</b></h5>
                                     </div>
                                     <div class="col-4 px-4 mt-2">
                                         <h5>pengeluaran</h5>
-                                        <h5><b>Rp {{ $allPengeluaran }} </b></h5>
+                                        <h5><b>@currency($allPengeluaran) </b></h5>
                                     </div>
                                 </div>
                             </div>

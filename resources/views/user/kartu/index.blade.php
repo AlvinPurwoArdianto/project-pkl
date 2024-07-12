@@ -27,7 +27,7 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td> <strong> {{ $data->nama_kartu }} </strong></td>
                                     <td> <strong> {{ $data->no_kartu }} </strong></td>
-                                    <td> <strong>Rp. {{ $data->total }} </strong></td>
+                                    <td> <strong> @currency($data->total) </strong></td>
                                     <td>
                                         <form action="{{ route('dompet.destroy', $data->id) }}" method="POST">
                                             @csrf
