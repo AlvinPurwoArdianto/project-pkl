@@ -14,7 +14,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Jumlah pemasukan</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="number" class="form-control" id="basic-icon-default-fullname"
+                                <input type="number" class="form-control" id="jumlahPemasukan"
                                     placeholder="Jumlah pemasukan" name="jumlah_pemasukan" />
                             </div>
                         </div>

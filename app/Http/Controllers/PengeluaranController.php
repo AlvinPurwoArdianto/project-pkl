@@ -66,7 +66,7 @@ class PengeluaranController extends Controller
         $pengeluaran->save();
         Alert::success('Success', 'Pengeluaran Berhasil Dibuat.')->autoClose(1500);
 
-        return redirect()->route('pengeluaran.index');
+        return redirect()->route('home');
 
         // if ($kartu->total < $request->jumlah_pengeluaran) {
         //     Alert::warning('Warning', 'Saldo anda tidak mencukupi')->autoClose(1500);

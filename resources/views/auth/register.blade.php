@@ -65,12 +65,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Jenis Kelamin') }}</label>
 
                                 <div class="col-md-6">
-                                    {{-- <input id="email" type="email"
-                                    class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email"> --}}
                                     <select name="jenis_kelamin" id=""
                                         class="form-control @error('jenis_kelamin') is-invalid @enderror">
-                                        <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                        <option selected disabled>Pilih Jenis Kelamin</option>
                                         <option value="Laki-Laki">Laki-Laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
@@ -137,7 +134,7 @@
                             <div class="row mb-3">
                                 <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Confirm
-                                                                                                                                            Password') }}</label>
+                                                                                                                                                                                                                                                                                            Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"

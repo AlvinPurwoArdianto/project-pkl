@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Alert;
 use App\Models\Kartu;
 use App\Models\Pemasukan;
 use App\Models\Pengeluaran;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -41,9 +41,32 @@ class HomeController extends Controller
         $allPemasukan = Pemasukan::sum('jumlah_pemasukan');
         $allPengeluaran = Pengeluaran::sum('jumlah_pengeluaran');
 
+        // BUAT KE CHART
+        $masukPemasukan = Pemasukan::select('jumlah_pemasukan')->get();
+        // $masukPengeluaran = Pengeluaran::select('jumlah_pengeluaran')->get();
+
+        $totalPemasukan = $masukPemasukan->sum('jumlah_pemasukan');
+        $hasilPemasukan = $masukPemasukan->pluck('jumlah_pemasukan');
+
+        // $totalPengeluaran = $masukPengeluaran->sum('jumlah_pengeluaran');
+        // $hasilPengeluaran = $masukPengeluaran->pluck('jumlah_pengeluaran');
+        // dd($hasilPemasukan);
+
         confirmDelete('Hapus Kartu!', 'Apakah Anda Yakin?');
 
-        return view('home', ['kartu' => $kartu, 'pemasukan' => $pemasukan, 'pengeluaran' => $pengeluaran, 'saldo' => $saldo, 'allPemasukan' => $allPemasukan, 'allPengeluaran' => $allPengeluaran]);
+        return view('home', [
+            'kartu' => $kartu,
+            'pemasukan' => $pemasukan,
+            'pengeluaran' => $pengeluaran,
+            'saldo' => $saldo,
+            'allPemasukan' => $allPemasukan,
+            'allPengeluaran' => $allPengeluaran,
+            'totalPemasukan' => $totalPemasukan,
+            'hasilPemasukan' => $hasilPemasukan,
+            // 'totalPengeluaran' => $totalPengeluaran,
+            // 'hasilPengeluaran' => $hasilPengeluaran,
+
+        ]);
     }
 
     public function destroy($id)

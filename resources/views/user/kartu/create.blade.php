@@ -23,7 +23,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">No kartu</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                <input type="number" class="form-control" id="basic-icon-default-fullname"
                                     placeholder="No Kartu" name="no_kartu" />
                             </div>
                         </div>
@@ -32,14 +32,14 @@
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Total</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                <input type="number" class="form-control" id="basic-icon-default-fullname"
                                     placeholder="Total (Opsional)" name="total" />
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('home') }} " class="btn btn-primary">Back</a>
+                            <a href="{{ route('dompet.index') }} " class="btn btn-primary">Back</a>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>

@@ -92,14 +92,10 @@
                 <div class="card p-2">
                     <div class="card-header bg-transparent">
                         <h4><b>Statistik</b></h4>
-                        <p class="text-sm mt-4">
-                            <i class="fa fa-arrow-up text-success"></i>
-                            <span class="font-weight-bold">4% more</span> in 2021
-                        </p>
                     </div>
                     <div class="card-body">
                         <div class="chart">
-                            <canvas id="chart-line" class="chart-canvas" height="250"></canvas>
+                            <canvas id="myChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -110,7 +106,7 @@
                 <div class="row">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h4><b>History</b></h4>
+                            <h4><b>Rekapan</b></h4>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -141,13 +137,7 @@
                                     </thead>
                                     <tbody>
                                         @php $no = 1; @endphp
-                                        <tr>
-                                            <td>
-                                                {{ $no++ }}</td>
-                                            <td>{{ Auth::user()->username }}</td>
-                                            <td>a</td>
-                                            <td></td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
