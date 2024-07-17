@@ -43,11 +43,10 @@ class HomeController extends Controller
 
         // BUAT KE CHART
         $masukPemasukan = Pemasukan::select('jumlah_pemasukan')->get();
-        // $masukPengeluaran = Pengeluaran::select('jumlah_pengeluaran')->get();
-
         $totalPemasukan = $masukPemasukan->sum('jumlah_pemasukan');
         $hasilPemasukan = $masukPemasukan->pluck('jumlah_pemasukan');
 
+        // $masukPengeluaran = Pengeluaran::select('jumlah_pengeluaran')->get();
         // $totalPengeluaran = $masukPengeluaran->sum('jumlah_pengeluaran');
         // $hasilPengeluaran = $masukPengeluaran->pluck('jumlah_pengeluaran');
         // dd($hasilPemasukan);
